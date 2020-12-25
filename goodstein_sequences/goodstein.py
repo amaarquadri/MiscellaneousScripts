@@ -57,7 +57,10 @@ def goodstein_sequence_generator(seed):
 def plot_sequence(seed=15, terms=1000):
     generator = goodstein_sequence_generator(seed)
     sequence = [next(generator) for _ in range(terms)]
-    print(sequence[:20])
+
+    for i, term in enumerate(sequence[:20]):
+        print(f'{term}: {HereditaryTree.parse(term, i + 2)}')
+
     plt.plot(list(range(terms)), [log(term) for term in sequence])
     plt.title(f'Goodstein Sequence Starting at {seed}')
     plt.xlabel('Term')
